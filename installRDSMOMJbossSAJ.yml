@@ -1,0 +1,191 @@
+---
+  - name: création d'un rds mom à partir d'une vm vierge
+    hosts: momservers
+    become: true
+    vars:
+      user: admsirm
+    environment:
+      RDS: SIRM
+    tasks:
+      - name: 4 - creation du repertoire jboss produit
+        file:
+          path: /soft/jbosseap6.4.17
+          state: directory
+          owner: root
+          group: root
+          mode: 0755
+      - name: copy RPM rsync from local
+        copy:
+          src: rsync-3.1.1-1.el7.rfx.src.rpm
+          dest: /tmp
+      - name: 5 - rsync doit être installé 
+        yum:
+          name: "{{ item }}"
+          state: present
+        with_items: 
+          - /home/aissam/rsync-3.1.1-1.el7.rfx.src.rpm
+      - name: 6 - (DEBUG) Allow RSYNC for new super user without SUDO password
+        lineinfile:
+          path: /etc/sudoers
+          state: present
+          insertafter: '^%sudo'
+          line: "{{ user }} ALL=NOPASSWD: /usr/bin/rsync"
+      - name: 7 - installation de jboss 6.4.17
+        synchronize:
+          src: ~/tmp/jbosseap6.4.17/
+          dest: /soft/jbosseap6.4.17
+          recursive: true
+      - name: 8 - (DEBUG) Disallow RSYNC for new super user without SUDO password
+        lineinfile:
+          path: /etc/sudoers
+          state: absent
+          line: "{{ user }} ALL=NOPASSWD: /usr/bin/rsync"
+      - name: 9 - création du groupe jboss
+        group:
+          name: jboss
+          state: present
+      - name: 10 - changement du user/group du produit jboss
+        file:
+          path: /soft
+          owner: root
+          group: root
+          recurse: true
+          mode: 0755
+      - name: 11 - Création du lien symbolique jboss vers le répertoire d'installation 
+        shell:
+          ln -s jbosseap6.4.17 jboss
+        args:
+          creates: /soft/jbosseap6.4.17
+      - name: ajout administrateur jboss
+        shell: /soft/jbosseap6.4.17/bin/add-user.sh admin kb3fDe4G!
+      - name: ajout utilisateur mom jboss
+        shell: /soft/jbosseap6.4.17/bin/add-user.sh -a momuser kb3fDe4G!
+      - name: création de la structure du produit saj du domaine
+        file:
+          path: /produit/ssirm82s/saj
+          state: directory
+          recurse: true
+          owner: admsirm
+          group: jboss
+          mode: 0775
+      - name: 12 - déploiement de la configuration saj du domaine sirm
+        unarchive:
+          src: /home/aissam/saj/produitsaj.tar.gz
+          dest: /produit/ssirm82s/saj
+          owner: admsirm
+          group: jboss
+          mode: 0755
+
+      - name: 13 - définition de l'utilisateur du /produit
+        file:
+          path: /produit
+          mode: 0777
+      - name: 14 - creation de la structure root du domaine
+        file:
+          path: /data/soft
+          state: directory
+          owner: root
+          group: root
+          recurse: true
+      - name: 15 - création du domaine saj
+        file: 
+          path: /data/soft/ssirm82s/saj
+          state: directory
+          recurse: true
+          owner: admsirm
+          group: jboss
+          mode: 0750
+      - name: 16 - définition de l'utilisateur du domaine
+        file:
+          path: /data/soft/ssirm82s/
+          owner: admsirm
+          group: jboss
+      - name: 17 - création du domaine jboss
+        file:
+          path: /data/soft/ssirm82s/jboss
+          state: directory
+          owner: admsirm
+          group: jboss
+      - name: 18 - generation de la configuration saj
+        template:
+          src: "{{item.src}}"
+          dest: "{{item.dest}}"
+          owner: admsirm
+          group: jboss
+          mode: 0775
+        with_items:
+          - {src: 'templates/ApacheVar.j2',dest: '/data/soft/ssirm82s/saj/ApacheVar.xml'}
+          - {src: 'templates/ConfScriptTiers.j2',dest: '/data/soft/ssirm82s/saj/ConfScriptTiers.properties'}
+          - {src: 'templates/domaine.j2',dest: '/data/soft/ssirm82s/saj/domaine.properties'}
+          - {src: 'templates/instance.j2',dest: '/data/soft/ssirm82s/saj/instance.properties'}
+          - {src: 'templates/JBossVar.j2',dest: '/data/soft/ssirm82s/saj/JBossVar.properties'}
+          - {src: 'templates/referentiel-config.j2',dest: '/data/soft/ssirm82s/saj/referentiel-config.xml'}
+          - {src: 'templates/SaVar.j2',dest: '/data/soft/ssirm82s/saj/SaVar.properties'}
+          - {src: 'templates/shell.j2',dest: '/data/soft/ssirm82s/saj/shell.properties'}
+      - name: copie du model saj referentiel-config.xsd
+        copy:
+          src: "{{item.src}}"
+          dest: "{{item.dest}}"
+          owner: admsirm
+          group: jboss
+          mode: 0775
+        with_items:
+          - {src: 'files/referentiel-config.xsd',dest: '/data/soft/ssirm82s/saj/referentiel-config.xsd'}
+      - name: 19 - création du repertoire des log du serveur jboss du domaine
+        file:
+          path: /logtmp/log/ssirm82s/
+          state: directory
+          recurse: true
+          owner: admsirm
+          group: jboss
+          mode: 0750
+      - name: 19 - création du repertoire des log du serveur jboss du domaine
+        file:
+          path: /logtmp/log/ssirm82s/jboss
+          state: directory
+          recurse: true
+          owner: admsirm
+          group: jboss
+          mode: 0750
+
+      - name: 20 - installation de unzip 
+        yum:
+          name: unzip
+          state: present
+      - name: 21 - déploiement de la configuration du domaine jboss
+        unarchive:
+          src: /home/aissam/dist-tat1-4.5.3-fix1-dist/SAJTAT1AMTL-4.5.3/templates/template-jboss_eap-6.4-dist.zip 
+          dest: /data/soft/ssirm82s/
+          owner: admsirm
+          group: jboss
+          mode: 0750
+      - name: 22 - copy la configuration de base mom
+        template:
+          src: templates/standalone.j2
+          dest: /data/soft/ssirm82s/jboss/configuration/standalone.xml
+          owner: admsirm
+          group: jboss
+          mode: 0640
+      - name: copie du fichier mgmt-user.properties ves la conf jboss
+        copy:
+          src: "{{item.src}}"
+          dest: "{{item.dest}}"
+          remote_src: true
+          owner: admsirm
+          group: jboss
+          mode: 0644
+        with_items:
+          - {src: '/soft/jbosseap6.4.17/standalone/configuration/mgmt-users.properties',dest: '/data/soft/ssirm82s/jboss/configuration/mgmt-users.properties'}
+          - {src: '/soft/jbosseap6.4.17/standalone/configuration/application-users.properties',dest: '/data/soft/ssirm82s/jboss/configuration/application-users.properties'}
+      - name: 23 - -----------------------copy du script .setEnv
+        copy:
+          src: "{{ item.src }}"
+          dest: "{{ item.dest }}"
+          owner: admsirm
+          group: jboss
+          mode: 0640
+        with_items:
+          - {src: 'files/.setEnv',dest: '/data/soft/ssirm82s/saj/'}
+      - name: 25 - Initialisation des variables d'environnement du RDS et  Démarrage du jboss
+        shell: . /data/soft/ssirm82s/saj/.setEnv s sirm 82 s; sh $SAJ_HOME/bin/restartSA.sh
+

@@ -1,0 +1,11 @@
+[momservers]
+#noeud1
+#noeud2
+#noeud3
+192.168.2.9
+192.168.2.39
+[momservers:vars]
+noeud1=192.168.2.9
+noeud2=192.168.2.39
+[apacheservers]
+

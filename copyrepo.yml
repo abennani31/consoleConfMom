@@ -1,0 +1,8 @@
+---
+  - name: copy repo yum
+    hosts: momservers
+    become: true
+    tasks: 
+      - file: 
+          src: /etc/yum.repo.d/
+          dest: /etc/yum/yum.repo.d

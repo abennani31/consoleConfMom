@@ -1,0 +1,13 @@
+---
+  - name: test jboss cli
+    hosts: momservers
+    tasks:
+      - jbosscli:
+          command: /subsystem=messaging/hornetq-server=default/cluster-connection=cluster-momv5:read-attribute(name=topology)
+          cli_path: /soft/jbosseap6.4.17/bin/
+          server: "{{ ansible_hostname}}:21899"
+          user: admin
+          password: kb3fDe4G!
+        register: jbosscliout
+      - debug:
+          msg: "{{jbosscliout}}"

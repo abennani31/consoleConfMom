@@ -1,0 +1,18 @@
+---
+  - name: install pexpect 3.3
+    hosts: momservers
+    tasks:
+    - copy:
+          src: ~/downloads/pexpect-3.3.tar.gz
+          dest: /tmp/pexpect-3.3.tar.gz
+    - unarchive:
+          src: /tmp/pexpect-3.3.tar.gz
+          dest: /tmp
+          remote_src: true
+
+    - shell: cd /tmp/pexpect-3.3
+      args:
+        creates: /tmp/pexpect-3.3
+    - shell: python setup.py install
+      args:
+        creates: /tmp/pexpect-3.3

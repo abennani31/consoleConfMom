@@ -1,0 +1,10 @@
+---
+  - name: disable yum cache
+    hosts: momservers
+    become: true
+    tasks:
+      - lineinfile:
+          path: /etc/yum/pluginconf.d/fastestmirror.conf
+          line: "enabled=0"
+          regexp: "enabled=1"
+        

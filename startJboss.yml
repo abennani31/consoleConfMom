@@ -1,0 +1,10 @@
+---
+  - name: Initialisation des variables d'environnement du RDS et  Démarrage du jboss
+    hosts: momservers
+    environment:
+      RDS: SIRM
+    become: true
+    remote_user: admsirm
+    tasks:
+    - name: appel des scripts de démarrage
+      shell: . /data/soft/ssirm82s/saj/.setEnv s sirm 82 s; sh $SAJ_HOME/bin/restartSA.sh

@@ -1,0 +1,17 @@
+---
+  - name: add managment jboss user
+    hosts: momservers
+    become: true
+    tasks: 
+      - expect:
+          command: /soft/jbosseap6.4.17/bin/add-user.sh
+          responses:
+            - Quel type d'utilisateur souhaitez-vous ajouter ?: 'a'
+            - Saisir les informations sur le nouvel utilisateur: 'momAdmin'
+            - Êtes-vous certain de vouloir ajouter l'utilisateur 'momAdmin' oui/non ?: 'oui'
+            - Mot de passe : kb3fDe4G!
+            - Saisir mot de passe à nouveau : kb3fDe4G!
+            - Quels groupes souhaitez-vous impartir à cet utilisateur ? (Veuillez saisir une liste séparée par des virgules, ou laisser vide)[  ]: ''
+            - L'utilisateur 'admin' va être ajouté pour le domaine 'ManagementRealm'
+Est-ce correct ? oui/non: 'oui'
+          

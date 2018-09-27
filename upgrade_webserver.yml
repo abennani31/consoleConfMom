@@ -1,0 +1,6 @@
+---
+  - name: upgrade
+    host: 
+    remote_user: devops
+    become: true
+

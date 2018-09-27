@@ -1,0 +1,16 @@
+---
+
+  - hosts: momservers
+
+    vars:
+        rhsm_username: bob.smith@acme.com
+        rhsm_password: "{{ vault_rhsm_password }}"
+        rhsm_repos:
+          - name: rhel-7-server-extras-rpms
+            state: present
+          - rhel-7-server-rh-common-rpms
+          - rhel-7-server-openstack-8-rpms
+
+    roles:
+      - openstack.redhat-subscription
+

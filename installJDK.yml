@@ -1,0 +1,9 @@
+---
+  - name: install java from java role 
+    hosts: momservers
+    become: true
+    roles:
+      - williamyeh.oracle-java
+    vars:
+      - java_download_from_oracle: false
+      - java_subversion : 181

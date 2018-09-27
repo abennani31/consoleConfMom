@@ -1,0 +1,7 @@
+---
+  - name: suppression du produit saj
+    hosts: momservers
+    become: true
+    tasks:
+      - shell: rm -rf /produit/ssirm82s/saj/*
+      - shell: rm -rf /soft/*
