@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<jmxConfigurator />
+	<contextName>saj-tat1</contextName>
+
+	<appender name="SiftAppender" class="ch.qos.logback.classic.sift.SiftingAppender">
+		<discriminator>
+			<Key>fileName</Key>
+			<DefaultValue>${J2EE_LOG}/saj.log</DefaultValue>
+		</discriminator>
+		<sift>
+			<appender class="ch.qos.logback.core.rolling.RollingFileAppender"
+				name="RollingFileAppender-${fileName}">
+				<file>${fileName}</file>
+				<append>true</append>
+				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+					<!-- Rollover daily -->
+					<fileNamePattern>${fileName}-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+                  <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                    <!-- or whenever the file size reaches 10MB -->
+                    <maxFileSize>10MB</maxFileSize>
+                  </timeBasedFileNamingAndTriggeringPolicy>
+                </rollingPolicy>
+                <!-- encoders are assigned the type
+                     ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+                <encoder>
+                    <pattern>%-12(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5(%-5level) %40(%logger{40}) - %msg %n</pattern>
+                </encoder>
+              </appender>
+        </sift>
+    </appender>
+
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <!--
+            encoders are assigned the type
+            ch.qos.logback.classic.encoder.PatternLayoutEncoder by default
+        -->
+        <encoder>
+            <pattern>%-12(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5(%-5level) %40(%logger{40}) - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- Limitations de certains logs -->
+    <logger name="org.springframework">
+        <level value="INFO" />
+    </logger>
+    <logger name="org.springframework.beans.factory.xml.XmlBeanDefinitionReader">
+        <level value="WARN" />
+    </logger>
+
+    <logger name="org.apache.commons.beanutils">
+        <level value="INFO" />
+    </logger>
+    <logger name="fr.msa.agora.socle.saj.util.io">
+        <level value="INFO" />
+    </logger>
+    <logger name="fr.msa.agora.socle.saj.util.xml">
+        <level value="WARN" />
+    </logger>
+
+	<root>
+		<level value="INFO"/>
+		<appender-ref ref="SiftAppender"/>
+		<!-- <appender-ref ref="ConsoleAppender"/> -->
+	</root>
+</configuration>

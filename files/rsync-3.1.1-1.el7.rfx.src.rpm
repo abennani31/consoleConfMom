@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<TITLE>PolluxAV - Network Error</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="SIGMAP">
+</head>
+<body>
+<table width="80%" border="1" align="center" cellpadding="0" cellspacing="0">
+  <tr bgcolor="#FD4C07">
+    <td><font color=white><b>PROXY INTERNET SIGMAP</b></font></td>
+</tr>
+</table>
+<table width="80%" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#00286D">
+  <tr>
+    <td width="60%">
+<table width="100%" >
+      <tr>
+ <td><img alt="logo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAABGCAMAAADy1ib8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJERkRCRkY0NjEzMDExRTBBRkU3RUQ2QkNCRTgzNjMwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJERkRCRkY1NjEzMDExRTBBRkU3RUQ2QkNCRTgzNjMwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkRGREJGRjI2MTMwMTFFMEFGRTdFRDZCQ0JFODM2MzAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkRGREJGRjM2MTMwMTFFMEFGRTdFRDZCQ0JFODM2MzAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6r3irmAAAAb1BMVEX///8NQIj+/v6Gn8PCz+FKcKb0xkD77L/wswD32X9JcKYcTI+kt9LR2+krWJfw8/jh5/BoiLWzw9o7ZJ53lLyVq8vv8vdZfK3g5u86ZJ7R2uhnh7RYe612k7yVq8qzw9n88c/99d/31HD++u/54p8QvmsnAAAFvklEQVR42uya7XajOAyGUWzP7OIvMBDSpE1mdvf+r3El2xAgdhraJNMf1TkzNDY5fmIL+ZVMAfcwUUT7+dc97EdxX6p72TdVMM3YF6JqhaKLNaBuo5Il2cswCP5t0sNnem6iEuDnyAl94wqWGzJOfx7Uzn/Y7I8vs5Hl4bRN98ypOgGmtkXBeymFoyliDfS6aCUYQVDQsHVUksWBg/HyzKSmHZvda44Kf5ow2FABNA2AxikCCdBHKofNAGwN1euMiewkw7CXPdykqRgYV6E/O1EXFoAjVV90AHEFDXQILldQpWzrF+uY6imTVBX9Dlo51eOkeCpOExip4hf456g8lkp3HZJ+ZVWNYLYD2XYpqpqhVR+h4tsp1tu0Zzf58JJcwZ58qmJQF3pB1fOiwWYu+tUruD94j3kdJ2jk2L35nnLs2cqktxsJDbnSYgVb/Fj453yVt/uBzg+X4fMJfDv3nGKTSqwgr4XoLEUI0SnGC4XLRe5fWNa3GNlr0atiHdVeTh94deH2gw2LWj5yHyyXS3KJtQicbDZZj6UqFzFbjj7FlptMXF75eCp+scEdMpOIvjWNDiPVrx/3sH9mVK+X+26crONlD58s4Uj178972K8ZVUINHNNLO04jf/gKcsiNneKd/pI5VW47qTjGCK4Ly/knqfKzCBkqJ3NTxzB6Muz0MfXJVKifMlFSoRj9Q1TMQI1UqhYY1wvOXCeYVX2r6QOfUPG6py3gOVTho4h6JYQ5Ciuymq8g7YrQ2OetICfRoFEeEITkSMbQ2dSMSmNHRRLwiVQospgAD9GexdWUCnGFV9LPnCvS6CaC5KmEaJ9JxcEUcQUzVA6MLRzjz6WCOq5ghgqZjcjr97tTtZSF4hPWtKLzIUoLERJn5f+1ocH2eIt7WhR9xj74TfUwqt9/38P++8pUhvLZI2cnvrR91M4XhkkVfYk9uNbHtpuVtisfXYGUfPMBO7xLRfpzYT6IJtoTVKfNh+z1PSp2mb17KnY9q4/1qY9BDRnZhMpybRVGd90pS/k71LzQvNKoWaxjqiq8bA/tVLl1Nk+1/yBVLD7Mqh9G4jzU5BU6qD8SzSSp/C/o/FyFdivCXRmqmHLu2O123KQzL2yQQjHc42qQcU5wcCOKHnreDqLPt7d4V0/y4loUvUyQr1kogGwTVNzXqiho8OA/wo+snVLNIBl8u4SatSRb18b2vMn0jhNShbHQGKnItSnNNjOqfDlyOldm/VxlqARV+jW3UyrSW92MygBKmWTKOvWr7XHmOm/T6pAs5341FJHSVApki35lvRIeqVo3WUFsx//YFb/KPYO7t3S5fWJpKp9Y0dOFyQ1EKuZXUIY7fLu/y+j18SoU/8r8bpSLomMxQVfnOD8F8O3zpovYrq5hvVwJWI/dB7NbDrrI9k9R4TOVG/uFbW6mumtVLTrX4ikb6nzjIdi8P0V11wpkJk7up6cA6um6PWNTL9/BV6GC6QHOXah8gvpJqlkUM/eguqHM9x5VjJ1RO+/NrVSD+K3G+KkXsdUOe5+286/cej6Iwu60WROv6riLaBOuAmoJHTQFCizm58qLPTqa7jBCCxu3J7WKaiuvMpsFlYo7boXiqae6o5eddGJoUUnF+oxssbdweKXtWqOaqOenvu9SsSvb0ZDmTKjoDNVxX5blnEqMwlc/G+gcshJVRYqKixp7Wu4CauscX0OlzoErLSuW2YSfmxaXK55PeqlFwqqOtazR40fRF79yO5V6R8iEO6an4ZhW4yhViyodrQp1UpogCdVAZX2IMOhnaLbiTtVzSXqV6jRmx+Upu0XvDy+zc2dhaVx0GoUiz0UqXEJyeD9PBjOJBnp8LhquJB2cm0onqMIbKUtbhAJTZq1evDmAruyfRbpGqo6SrkDlUzCUhLbxGipem4e+vWMVC0VYzRhVGEm9h0hlh3hVdUz5RseYjlf3/f7VN9Wj3zb8X4ABAJ2rZbkdTEbLAAAAAElFTkSuQmCC" /></td>
+      </tr>
+      <tr>
+        <td ><p align="justify">
+<blockquote>
+<TABLE border=0 width="90%">
+<TR><TD>
+<FONT face="Helvetica">
+<big>Network Error (dns_unresolved_hostname)</big>
+<br><br>
+</FONT>
+</TD></TR>
+<TR><TD>
+<FONT face="Helvetica">
+Your requested host "apt.sw.be" could not be resolved by DNS.
+</FONT>
+</TD></TR>
+<TR><TD>
+<FONT face="Helvetica">
+<BR>
+L'adresse demandée n'existe pas
+</FONT>
+</TD></TR>
+<TR><TD>
+<FONT face="Helvetica" SIZE=2>
+<BR>
+En cas de problème persistant,  merci de contacter votre support Centre.
+</FONT>
+</TD></TR>
+</TABLE>
+</blockquote>
+</FONT>
+</p> <br>
+<small><TR><TD WIDTH="50%">URL : http://apt.sw.be/source/rsync-3.1.1-1.el7.rfx.src.rpm<br>
+IP :  10.205.250.72<br>
+[31/Jul/2018:14:56:00 +0200]</TD><td WIDTH="50%" align="right">
+</td></small>
+          </td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="80%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr bgcolor="#FD4C07">
+    <td width="375"></td>
+    <td width="12"><br></td>
+    <td width="316" align="right"> </td>
+    <td width="29" align="left" bgcolor="#FD4C07"></td>
+  </tr>
+</table>
+<p> </p>
+</body>
+</html>

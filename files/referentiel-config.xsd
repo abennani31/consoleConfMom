@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.1">
+	<!-- Déclaration de la balise racine : domaine -->
+	<xsd:element name="domaine" type="domaine" />
+	<xsd:complexType name="domaine" final="extension restriction">
+		<xsd:sequence>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+    			<!--
+    				Il contient une liste de paramètres ainsi qu'une liste d'options Java à passer en paramètres au lancement du serveur d'application pour ce Domaine.
+    			-->
+    			<xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+    			<xsd:element ref="javaOptions" minOccurs="0" maxOccurs="1" />
+    			<!--
+                    Enfin, un domaine peut également définir des paramètres de sécurité.
+                -->
+    			<xsd:element ref="machineVirtuelles" minOccurs="0" maxOccurs="1" />
+    			<xsd:element ref="deployment" minOccurs="0" maxOccurs="1" />
+    			<xsd:element ref="produits" minOccurs="0" maxOccurs="1" />
+            </xsd:choice>
+		</xsd:sequence>
+		<!--
+            Un domaine est définit par un code, éventuellement une description et
+            un corgamo.
+        -->
+		<xsd:attribute name="rds" type="xsd:string" use="required" />
+		<xsd:attribute name="name" type="xsd:string" use="optional" />
+		<xsd:attribute name="corgamo" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<!-- Déclaration d'un paramètre -->
+	<xsd:element name="params" type="param" />
+	<xsd:complexType name="param">
+		<!-- Un paramètre est définit par sa clef. -->
+		<xsd:attribute name="key" type="xsd:string" use="required" />
+		<!-- Il possède une valeur et peut avoir une description -->
+		<xsd:attribute name="value" type="xsd:string" use="optional" />
+		<xsd:attribute name="description" type="xsd:string" use="optional" />
+        <xsd:attribute name="cipher" type="xsd:boolean" use="optional" />
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+	</xsd:complexType>
+
+	<!-- Déclaration d'une option Java -->
+	<xsd:element name="javaOptions" type="javaOption" />
+	<xsd:complexType name="javaOption">
+		<xsd:sequence>
+			<!-- Une liste de paramètres des options -D -->
+			<xsd:element ref="optionD" minOccurs="0" maxOccurs="1" />
+			<!-- Une liste de paramètres des options -XX -->
+			<xsd:element ref="optionXX" minOccurs="0" maxOccurs="1" />
+			<!-- Une liste de paramètres des options communes -->
+			<xsd:element ref="optionCommun" minOccurs="0" maxOccurs="1" />
+            <!-- Une liste de paramètres des options -P -->
+            <xsd:element ref="optionP" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+	</xsd:complexType>
+
+	<xsd:element name="optionD" type="optionD" />
+	<xsd:complexType name="optionD">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+	</xsd:complexType>
+
+	<xsd:element name="optionXX" type="optionXX" />
+	<xsd:complexType name="optionXX">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+	</xsd:complexType>
+
+	<xsd:element name="optionCommun" type="optionCommun" />
+	<xsd:complexType name="optionCommun">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+	</xsd:complexType>
+    
+    <xsd:element name="optionP" type="optionP" />
+    <xsd:complexType name="optionP">
+        <xsd:sequence>
+            <!-- Une application contient une liste de paramètres -->
+            <xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+    </xsd:complexType>
+    
+	<xsd:element name="machineVirtuelles" type="machineVirtuelles" />
+	<xsd:complexType name="machineVirtuelles">
+		<xsd:sequence>
+			<!-- Un objet "machineVirtuelle" contient juste une liste de machine -->
+			<xsd:element ref="jboss" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element ref="apache" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="jboss" type="jboss" />
+	<xsd:complexType name="jboss">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<!-- Un paramètre est définit par sa clef. -->
+		<xsd:attribute name="hostname" type="xsd:string" use="required" />
+	</xsd:complexType>
+
+	<xsd:element name="apache" type="apache" />
+	<xsd:complexType name="apache">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="params" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<!-- Un paramètre est définit par sa clef. -->
+		<xsd:attribute name="hostname" type="xsd:string" use="required" />
+	</xsd:complexType>
+
+	<xsd:element name="deployment" type="deployment" />
+	<xsd:complexType name="deployment">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="scanner" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element ref="scriptTiers" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false" />
+	</xsd:complexType>
+
+	<!-- Déclaration d'un paramètre -->
+	<xsd:element name="scanner" type="scanner" />
+	<xsd:complexType name="scanner">
+		<xsd:sequence>
+			<!-- Un scanner peut contenir des fichiers spécifiques à deployer -->
+			<xsd:element ref="scannerFile" minOccurs="0" maxOccurs="unbounded" />
+            <!-- Un scanner peut definir des surcharges de version d'application -->
+            <xsd:element ref="surchargeApplication" minOccurs="0" maxOccurs="unbounded" />
+            <!-- Un scanner peut definir des qualification de version d'application -->
+            <xsd:element ref="qualification" minOccurs="0" maxOccurs="unbounded" />
+            <!-- Sous balise scanner spécifique module jboss -->
+            <xsd:element ref="scannerModule" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<!-- Le chemin de la source. -->
+		<xsd:attribute name="source" type="xsd:string" use="required" />
+        <!-- Le type de serveur installé. (apache | sa | null) -->
+        <xsd:attribute name="typeServeur" type="xsd:string" />
+		<!-- Le chemin de la destination. -->
+		<xsd:attribute name="dest" type="xsd:string" use="required" />
+		<!-- Le chemin de la destination. -->
+		<xsd:attribute name="specifique" type="xsd:boolean" default="false" />
+		<!-- L'identifiant. -->
+		<xsd:attribute name="id" type="xsd:string" use="optional" />
+		<!-- L'obligation du déploiement du scanner -->
+		<xsd:attribute name="obligatoire" type="xsd:boolean" default="true" use="optional" />
+        <!--  -->
+        <xsd:attribute name="presenceControlDest" type="xsd:boolean" default="true" use="optional"/>
+        
+        <xsd:attribute name="filter" type="xsd:string" />
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false" />
+        <!--  Gestion multiple version des applications -->
+        <xsd:attribute name="multipleVersion" type="xsd:boolean" default="false" use="optional" />
+	</xsd:complexType>
+    
+    <xsd:element name="scriptTiers" type="scriptTiers"/>
+    <xsd:complexType name="scriptTiers">
+        <xsd:attribute name="execution" type="xsd:string"/>
+        <xsd:attribute name="source" type="xsd:string" use="required"/>
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional" default="false"/>
+        <!-- Le type de serveur installé. (apache | sa | null) -->
+        <xsd:attribute name="typeServeur" type="xsd:string" />
+    </xsd:complexType>
+
+	<!-- Déclaration d'un file sur le scanner -->
+	<xsd:element name="scannerFile" type="scannerFile" />
+	<xsd:complexType name="scannerFile">
+		<!-- Le chemin de la source. -->
+		<xsd:attribute name="file" type="xsd:string" use="required" />
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional"  default="false"/>
+	</xsd:complexType>
+
+    <!-- Déclaration d'un scanner module pour le deploiement de module jboss -->
+    <xsd:element name="scannerModule" type="scannerModule" />
+    <xsd:complexType name="scannerModule">
+        <!-- Le nom du module. -->
+        <xsd:attribute name="nom" type="xsd:string" use="required" />
+        <!-- Si on ne deploie que la derniere version -->
+        <xsd:attribute name="derniereVersion" type="xsd:boolean" use="optional"  default="false"/>
+        <!-- si on cible une version precise -->
+        <xsd:attribute name="version" type="xsd:string" use="optional"/>
+    </xsd:complexType>
+
+    <!-- Déclaration d'une surchargeApplication sur le scanner -->
+    <xsd:element name="surchargeApplication" type="surchargeApplication" />
+    <xsd:complexType name="surchargeApplication">
+        <!-- Le nom de l'applciation. -->
+        <xsd:attribute name="app" type="xsd:string" use="required" />
+        <!-- La version de l'application -->
+        <xsd:attribute name="version" type="xsd:string" use="required" />
+        <!-- La destination de l'application (ancienne ou nouvelle vm) -->
+        <xsd:attribute name="destination" type="xsd:string" use="optional" />
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional"  default="false"/>
+    </xsd:complexType>
+
+    <!-- Déclaration d'une qualification sur le scanner -->
+    <xsd:element name="qualification" type="qualification" />
+    <xsd:complexType name="qualification">
+        <!-- Le nom de l'applciation. -->
+        <xsd:attribute name="app" type="xsd:string" use="required" />
+        <!-- La version de l'application -->
+        <xsd:attribute name="ancienneVersion" type="xsd:string" use="required" />
+        <!-- La destination de l'application (ancienne ou nouvelle vm) -->
+        <xsd:attribute name="nouvelleVersion" type="xsd:string" use="required" />
+        <xsd:attribute name="delete" type="xsd:boolean" use="optional"  default="false"/>
+    </xsd:complexType>
+
+	<!-- Déclaration d'une liste de produits -->
+	<xsd:element name="produits" type="produits" />
+	<xsd:complexType name="produits">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="entiteFonctionnelle" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Déclaration d'une entite fonctionnelle -->
+	<xsd:element name="entiteFonctionnelle" type="entiteFonctionnelle" />
+	<xsd:complexType name="entiteFonctionnelle">
+		<xsd:sequence>
+			<!-- Une application contient une liste de paramètres -->
+			<xsd:element ref="produit" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+		<!-- Le code. -->
+		<xsd:attribute name="code" type="xsd:string" use="required" />
+		<!-- Le label. -->
+		<xsd:attribute name="label" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<!-- Déclaration d'un domaine produit -->
+	<xsd:element name="produit" type="produit" />
+	<xsd:complexType name="produit">
+		<!-- Le RDS. -->
+		<xsd:attribute name="rds" type="xsd:string" use="required" />
+		<!-- Le departement. -->
+		<xsd:attribute name="dpt" type="xsd:string" use="required" />
+		<!-- L'environnement donnees. -->
+		<xsd:attribute name="environnementDonnees" type="xsd:string" use="required" />
+		<!-- Le label. -->
+		<xsd:attribute name="label" type="xsd:string" use="optional" />
+        <!-- modification manuelle du template -->
+        <xsd:attribute name="modificationManuelle" type="xsd:boolean" default="false" use="optional"/>
+	</xsd:complexType>
+    
+</xsd:schema>
