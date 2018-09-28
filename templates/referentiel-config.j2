@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<domaine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ssirm82s" rds="sirm" xsi:noNamespaceSchemaLocation="./referentiel-config.xsd">
+    <params value="admin" key="sa.admin.login"/>
+    <params value="admin" key="sa.admin.pwd"/>
+    <params value="21800" key="sa.port.pivot"/>
+    <params value="ssirm82s" key="sa.partition.name"/>
+    <params value="237.227.1.18" key="sa.multicast.adresse"/>
+    <params value="82" key="codeSite"/>
+    <params value="82" key="dpt"/>
+    <params value="s" key="ep"/>
+    <params value="s" key="ed"/>
+    <params value="t" key="np"/>
+    <params value="n" key="nd"/>
+    <params value="rirm" key="rds.apache"/>
+    <javaOptions>
+        <optionD>
+            <params value="/logtmp/tmp/ssirm82s/" key="-Djava.io.tmpdir"/>
+            <params value="UTF-8" key="-Dfile.encoding"/>
+            <params value="ssirm82s" key="-Djboss.server.name"/>
+            <params value="/data/soft/ssirm82s/jboss" key="-Djboss.server.base.dir"/>
+            <params value="file:/data/soft/ssirm82s/jboss/" key="-Djboss.server.base.url"/>
+            <params value="/logtmp/log/ssirm82s/jboss" key="-Djboss.server.log.dir"/>
+            <params value="/data/soft/ssirm82s/jboss/saj/conf" key="-DZ59MOM_SERVER_CONF_DIR" />
+            <params value="ConnectionFactory" key="-DZ59MOM_CONNECTION_FACTORY" />
+            <!--<params value="file:/data/soft/ssirm82s/jboss/conf/ConfigDestinationsMOM_server.xml" key="-DZ59MOM_URL_CONF"/>-->
+	    <params value="http://a82rirm06-integ.agora.msanet:21880/ConfigDestinationsMOM.xml" key="-DZ59MOM_URL_CONF"/>
+            <params value="/data/donnees/mom/ehcache" key="-Dehcache.disk.store.dir" />
+            <params value="1" key="-Dorg.jboss.server.bootstrap.maxThreads" />
+            <params value="true" key="-Dactivate.correct.semantics.for.forward.when.no.consumers" />
+        </optionD>
+        <optionXX>
+            <params value="/logtmp/log/ssirm82s/jboss/hs_err_%p.log" key="-XX:ErrorFile"/>
+            <!--<params value="256m" key="-XX:PermSize"/>-->
+            <params value="256m" key="-XX:MetaspaceSize"/>
+            <!--<params value="512m" key="-XX:MaxPermSize"/>-->
+            <params value="512m" key="-XX:MaxMetaspaceSize"/>
+        </optionXX>
+        <optionCommun>
+            <params value="" key="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=21810"/>
+	    <params value="" key="-XX:+PrintGCDateStamps"/>
+            <params value="256m" key="-Xms"/>
+            <params value="512m" key="-Xmx"/>
+        </optionCommun>
+    </javaOptions>
+  <machineVirtuelles>
+        <jboss hostname="a82sirm02-integ">
+            <params value="170.217.245.93" key="adresse.ip"/>
+        </jboss>
+        <jboss hostname="a82sirm03-integ">
+            <params value="170.217.245.94" key="adresse.ip"/>
+        </jboss>
+        <apache hostname="a82rirm06-integ">
+            <params value="170.217.249.198" key="adresse.ip"/>
+        </apache>
+    </machineVirtuelles>
+<deployment>
+        <scanner obligatoire="false" specifique="false" dest="agora/deploy/" source="/NS00P/WEB/TSEAR"/>
+        <scanner obligatoire="false" specifique="false" dest="agora/deploy/" source="/NS00P/WEB/TSWAR"/>
+	<!--<scriptTiers source="/NS00P/USSYS/bin/Z59SauvegardeMsg.sh s sirm 82 s" execution="after"/>-->
+    </deployment>
+    <produits/>
+</domaine>

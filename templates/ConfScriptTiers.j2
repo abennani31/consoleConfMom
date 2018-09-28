@@ -1,0 +1,27 @@
+# Variable permettant de determiner si un script tiers doit etre executer.
+# ON -> Execution d un script tiers.
+# OFF -> Pas de script a executer (valeur par defaut).
+SAJ_SCRIPT_EXECUTE=ON
+
+# Precise l environnement sur lequel le script tiers est present et sera execute.
+# VM -> Sur les machines virtuelles.
+# MTL -> Sur la MTL. Non prise en charge actuellement.
+SAJ_SCRIPT_TYPE=VM
+
+# Chemin absolu du script tiers a executer.
+#SAJ_SCRIPT_PATH=${PFN}${EP}00P/U${EP}SYS/bin/exportMsgMOM.sh
+SAJ_SCRIPT_PATH=${PFN}${EP}00P/U${EP}SYS/bin/Z59ExportMsg.sh
+
+# Nombre de parametres du script tiers a executer.
+SAJ_SCRIPT_PARM=4
+
+# separateur utilise pour separer les valeurs des parametres dans la variable ci-dessous.
+SAJ_SCRIPT_PARM_SEPARATOR=,
+
+# Les parametres a passer aux scripts pour son execution.
+SAJ_SCRIPT_PARM_VALUES=s,sirm,82,s
+
+# Pour specifier si l echec du script tiers doit faire planter la journee d exploit.
+# ON -> Echec de la journee d exploit.
+# OFF -> Pas d echec de la journee d exploit (Par defaut).
+SAJ_SCRIPT_FAIL=OFF
